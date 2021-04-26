@@ -1,12 +1,12 @@
 # LoRaWAN温湿度传感器方案
 
-本文提供LoRa温湿度传感器通过**Link WAN**接入，同时采用**阿里云物联网平台**实现端到端应用。
+本文提供LoRaWAN温湿度传感器通过**Link WAN**接入，同时采用**阿里云物联网平台**实现端到端应用的方案。
 
 -   开通物联网络管理平台
 
     完成账号的注册之后，使用账号登录[Link WAN](https://linkwan.console.aliyun.com/) 开通服务。
 
-    ![开通后首页](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1408891851/p83370.png)
+    ![开通后首页](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1408891851/p83370.png)
 
 -   LoRa节点设备接入
 -   搭建与管理网络
@@ -33,7 +33,7 @@
 
 2.  在左侧导航栏上选择**设备管理** \> **产品**，单击**创建产品**， 填写产品信息后单击**保存**。详情请参见[数据接入物联网平台-1对1](/cn.zh-CN/云端开发指南/数据接入物联网平台-1对1.md)。
 
-    ![创建LoRa设备的产品](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9488509951/p83388.png)
+    ![创建LoRa设备的产品](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9488509951/p83388.png)
 
     |参数|描诉|
     |--|--|
@@ -41,24 +41,26 @@
     |所属品类|自定义品类|
     |节点类型|直连设备|
     |连网方式|LoRaWAN|
-    |入网凭证|从表单选择，如无可单击**创建凭证**|
+    |入网凭证|从表单选择。如无，可单击**创建凭证**|
     |数据格式|透传/自定义|
 
 3.  为产品添加LoRa设备。
 
     在左侧导航栏上单击**设备**，参见[单个创建设备](/cn.zh-CN/设备接入/创建设备/单个创建设备.md)添加设备。
 
-    ![添加LoRa设备](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1408891851/p83431.png)
+    ![添加LoRa设备](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1408891851/p83431.png)
 
-    **说明：** 使用LoRaWAN设备的DevEUI需小写作为deviceName。
+    **说明：** 使用LoRaWAN设备的DevEUI需小写作为DeviceName。
 
     -   添加完成后，显示如下，此时设备状态为**未激活**。
 
-        ![未激活](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2408891851/p83433.png)
+        ![未激活](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2408891851/p83433.png)
 
-    -   数据流转已自动同步 产品创建完成后，可在Link WAN里看到自动同步的数据流转设置。
+    -   数据流转已自动同步。
 
-        ![数据流转自动同步](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2408891851/p83435.png)
+        产品创建完成后，可在Link WAN里看到自动同步的数据流转设置。
+
+        ![数据流转自动同步](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2408891851/p83435.png)
 
         **说明：** 在网管平台只能查阅，新增终端请移步至物联网平台维护。
 
@@ -75,19 +77,19 @@
 
     -   添加温度属性，配置参数如下图所示。
 
-        ![添加温度属性](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2408891851/p83444.png)
+        ![添加温度属性](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2408891851/p83444.png)
 
     -   添加湿度属性，配置参数如下图所示。
 
-        ![添加湿度属性](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2408891851/p83445.png)
+        ![添加湿度属性](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2408891851/p83445.png)
 
 4.  **功能类型**选择**服务**，添加温度湿度阈值，参数配置如下图所示。
 
-    ![温度湿度阈值](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2408891851/p83446.png)
+    ![温度湿度阈值](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2408891851/p83446.png)
 
     其中输入参数设置如下图所示。
 
-    ![输入参数设置](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2408891851/p83454.png)
+    ![输入参数设置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2408891851/p83454.png)
 
     |参数名称|标志符|数据类型|取值范围|步长|单位|
     |----|---|----|----|--|--|
@@ -98,24 +100,24 @@
 
 5.  **功能类型**选择**事件**，添加湿度过高／过低告警事件。告警输出参数为当前湿度。
 
-    ![湿度异常告警事件](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3408891851/p83463.png)
+    ![湿度异常告警事件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3408891851/p83463.png)
 
     其中输出参数设置如下。
 
-    ![输出参数设置](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3408891851/p83469.png)
+    ![输出参数设置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3408891851/p83469.png)
 
-6.  单击**确认**，单击页面右下方的**发布更新**。
+6.  单击**确认**，单击页面左下方的**发布更新**。
 
     上述属性、服务、事件添加完成后，在自定义功能一栏下方可确认添加的结果。
 
-    ![功能定义结果](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3408891851/p83481.png)
+    ![功能定义结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3408891851/p83481.png)
 
 
 ## 平台脚本开发
 
 1.  进入**产品**的**数据解析**标签页，可以添加解析脚本。由于数据是以自定义格式透传到平台，所以需要添加脚本来解析自定义协议。
 
-    ![数据脚本解析](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3408891851/p83482.png)
+    ![产品-数据解析](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3481905061/p181676.png)
 
 2.  将下列代码添加到上图的**脚本编辑区**。
 
@@ -255,7 +257,7 @@
     }
     ```
 
-    脚本解析下行数据的函数 protocolToRawData 中必须设定输出结果的起始三个字节（用于指定下行的端口号以及下行消息类型），否则系统会丢掉下行帧。另外，节点实际接收到的数据将不会包含起始的三个字节。
+    脚本解析下行数据的函数protocolToRawData中必须设定输出结果的起始三个字节（用于指定下行的端口号以及下行消息类型），否则系统会丢掉下行帧。另外，节点实际接收到的数据将不会包含起始的三个字节。
 
     起始三字节的说明如下表所示。
 
@@ -263,8 +265,8 @@
     |-----------|-------------|--|
     |1|DFlag|固定为 0x5D|
     |1|FPort|下行端口号|
-    |1|DHDR|    -   0 表示 “Unconfirmed Data Down”数据帧
-    -   1 表示 “Confirmed Data Down”数据帧 |
+    |1|DHDR|    -   0表示 “Unconfirmed Data Down”数据帧
+    -   1表示 “Confirmed Data Down”数据帧 |
 
     示例：`0x5D 0x0A 0x00`表示：下行帧端口号为10，数据帧为Unconfirmed Data Down。
 
@@ -274,9 +276,9 @@
 
         在**脚本调试区1**里输入下面数据，**模拟类型**选择**设备上报数据**后，单击**运行**按钮。
 
-        ![设备上报数据](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3408891851/p83487.png)
+        ![设备上报数据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3408891851/p83487.png)
 
-        **说明：** 000102 中的 00 表示后面的两个字节分别表示温度和湿度，01 表示温度为1摄氏度，02表示湿度为2%。
+        **说明：** 000102中的00表示后面的两个字节分别表示温度和湿度，01表示温度为1摄氏度，02表示湿度为2%。
 
     2.  设备接收数据调试。
 
@@ -296,11 +298,11 @@
         }
         ```
 
-        ![接受数据](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3408891851/p83497.png)
+        ![接受数据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3408891851/p83497.png)
 
         查看**脚本调试区2**的运行结果如下：
 
-        ![基本调试区结果_接收](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4408891851/p83502.png)
+        ![基本调试区结果_接收](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4408891851/p83502.png)
 
 4.  脚本脚本调试无误后，单击**提交**按钮提交脚本。
 
@@ -316,39 +318,39 @@
         1.  在LoRa节点侧选择输入十六进制的000102后发送数据。
         2.  从左侧导航栏的**设备** \> **设备列表**选择对应节点，单击**查看**。
 
-            ![运行状态](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4408891851/p83511.png)
+            ![运行状态](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4408891851/p83511.png)
 
         3.  单击**运行状态**。
 
-            ![设备运行状态页面](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9453805061/p88052.jpg)
+            ![设备运行状态页面](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9453805061/p88052.jpg)
 
         4.  确认节点的湿度与温度信息是否已经上报且设置如下。
 
-            ![温度](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4408891851/p83512.png)
+            ![温度](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4408891851/p83512.png)
 
-            ![湿度](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4408891851/p83513.png)
+            ![湿度](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4408891851/p83513.png)
 
     2.  上报温湿度告警事件。
 
         -   温度告警事件上报
-            1.  在 LoRa 节点侧选择输入十六进制的0102 后发送数据。
+            1.  在LoRa节点侧选择输入十六进制的0102后发送数据。
             2.  在**设备详情** \> **事件管理**中确认温度告警事件是否已经上报。
 
-                ![事件上报](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4408891851/p83515.png)
+                ![事件上报](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4408891851/p83515.png)
 
         -   湿度告警事件上报
             1.  在LoRa节点侧选择输入十六进制的0202后发送数据。
             2.  在**设备详情** \> **事件管理**中确认湿度告警事件是否已经上报。
 
-                ![湿度事件上报](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4408891851/p83518.png)
+                ![湿度事件上报](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4408891851/p83518.png)
 
 2.  节点数据下行。
 
-    1.  在**产品详情** \> **设备开发**单击对应节点的**调试**按钮，进入**在线调试**页面。
+    1.  在**产品详情** \> **设备开发**，单击对应节点的**调试**按钮，进入**在线调试**页面。
 
     2.  选择调试功能为之前添加的温度湿度阈值，具体格式如下所示，单击发送指令。
 
-        ![在线调试](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4408891851/p83523.png)
+        ![在线调试](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4408891851/p83523.png)
 
         发送完成后在节点侧确认输出是否是16进制的`0332085a0a`。
 
