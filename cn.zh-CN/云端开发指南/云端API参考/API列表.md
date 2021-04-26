@@ -94,5 +94,5 @@
 
 |API|描述|
 |---|--|
-|[t1616750.dita\#doc\_api\_LinkWAN\_SendUnicastCommand](/cn.zh-CN/云端开发指南/云端API参考/上下行数据/SendUnicastCommand.md)|发送下行数据|
+|[t1616750.dita\#doc\_api\_LinkWAN\_SendUnicastCommand](/cn.zh-CN/云端开发指南/云端API参考/上下行数据/SendUnicastCommand.md)|发送 下行数据|
 
