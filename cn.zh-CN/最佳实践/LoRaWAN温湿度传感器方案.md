@@ -31,9 +31,11 @@
 
 1.  登录[物联网平台控制台](https://iot.console.aliyun.com/)。
 
-2.  在左侧导航栏上选择**设备管理** \> **产品**，单击**创建产品**， 填写产品信息后单击**保存**。详情请参见[数据接入物联网平台-1对1](/cn.zh-CN/云端开发指南/数据接入物联网平台-1对1.md)。
+2.  在**实例概览**页面，找到对应的实例，单击实例进入**实例详情**页面。
 
-    ![创建LoRa设备的产品](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9488509951/p83388.png)
+3.  在左侧导航栏上选择**设备管理** \> **产品**，单击**创建产品**， 填写产品信息后单击**确认**。详情请参见[数据接入物联网平台-1对1](/cn.zh-CN/云端开发指南/数据接入物联网平台-1对1.md)。
+
+    ![创建LoRa设备的产品](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6086059161/p83388.png)
 
     |参数|描诉|
     |--|--|
@@ -44,11 +46,11 @@
     |入网凭证|从表单选择。如无，可单击**创建凭证**|
     |数据格式|透传/自定义|
 
-3.  为产品添加LoRa设备。
+4.  为产品添加LoRa设备。
 
     在左侧导航栏上单击**设备**，参见[单个创建设备](/cn.zh-CN/设备接入/创建设备/单个创建设备.md)添加设备。
 
-    ![添加LoRa设备](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1408891851/p83431.png)
+    ![添加LoRa设备](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6086059161/p83431.png)
 
     **说明：** 使用LoRaWAN设备的DevEUI需小写作为DeviceName。
 
@@ -60,7 +62,7 @@
 
         产品创建完成后，可在Link WAN里看到自动同步的数据流转设置。
 
-        ![数据流转自动同步](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2408891851/p83435.png)
+        ![数据流转自动同步](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7086059161/p83435.png)
 
         **说明：** 在网管平台只能查阅，新增终端请移步至物联网平台维护。
 
@@ -71,7 +73,7 @@
 
 1.  在左侧导航栏上选择**设备管理** \> **产品**，单击产品对应**操作**栏中的**查看**。
 
-2.  选择**功能定义** \> **编辑草稿**，单击**自定义功能** \> **添加自定义功能**
+2.  选择**功能定义** \> **编辑草稿**，单击**添加自定义功能**。
 
 3.  在添加自定义功能弹框中，**功能类型**选择**属性**，添加温湿度属性。
 
@@ -117,7 +119,7 @@
 
 1.  进入**产品**的**数据解析**标签页，可以添加解析脚本。由于数据是以自定义格式透传到平台，所以需要添加脚本来解析自定义协议。
 
-    ![产品-数据解析](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3481905061/p181676.png)
+    ![产品-数据解析](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7086059161/p181676.png)
 
 2.  将下列代码添加到上图的**脚本编辑区**。
 
@@ -263,7 +265,7 @@
 
     |Size（bytes）|LoRa Downlink|描述|
     |-----------|-------------|--|
-    |1|DFlag|固定为 0x5D|
+    |1|DFlag|固定为0x5D|
     |1|FPort|下行端口号|
     |1|DHDR|    -   0表示 “Unconfirmed Data Down”数据帧
     -   1表示 “Confirmed Data Down”数据帧 |
@@ -304,7 +306,7 @@
 
         ![基本调试区结果_接收](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4408891851/p83502.png)
 
-4.  脚本脚本调试无误后，单击**提交**按钮提交脚本。
+4.  脚本调试无误后，单击**提交**按钮提交脚本。
 
 
 ## 设备在线调试
@@ -317,12 +319,9 @@
 
         1.  在LoRa节点侧选择输入十六进制的000102后发送数据。
         2.  从左侧导航栏的**设备** \> **设备列表**选择对应节点，单击**查看**。
+        3.  在**设备详情**页面选择**物模型数据** \> **运行状态**。
 
-            ![运行状态](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4408891851/p83511.png)
-
-        3.  单击**运行状态**。
-
-            ![设备运行状态页面](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9453805061/p88052.jpg)
+            ![设备运行状态页面](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8086059161/p88052.jpg)
 
         4.  确认节点的湿度与温度信息是否已经上报且设置如下。
 
