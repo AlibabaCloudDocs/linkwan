@@ -1,141 +1,127 @@
-# GetRentedJoinPermission {#doc_api_LinkWAN_GetRentedJoinPermission .reference}
+# GetRentedJoinPermission
 
-调用GetRentedJoinPermission根据入网凭证ID，获取当前用户账号租用的入网凭证（可能是专用入网凭证或泛在入网凭证）。
+调用GetRentedJoinPermission获取当前阿里云账号租用的入网凭证信息（专用凭证或泛在凭证）。
 
-## 调试 {#api_explorer .section}
+## 限制说明
 
-[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=LinkWAN&api=GetRentedJoinPermission&type=RPC&version=2018-12-30)
+单阿里云账号调用该接口的每秒请求数（QPS）最大限制为5。
 
-## 请求参数 {#parameters .section}
+**说明：** RAM用户共享阿里云账号配额。
+
+## 调试
+
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=LinkWAN&api=GetRentedJoinPermission&type=RPC&version=2019-03-01)
+
+## 请求参数
 
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
-|Action|String|是|GetRentedJoinPermission|系统规定参数。取值：**GetRentedJoinPermission**。
+|Action|String|是|GetRentedJoinPermission|系统规定参数。取值：**GetRentedJoinPermission**。 |
+|JoinPermissionId|String|是|123|要获取的入网凭证的ID，可调用[ListRentedJoinPermissions](~~109928~~)接口查询获取。 |
 
- |
-|JoinPermissionId|String|是|123|入网凭证ID。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~108601~~)。
 
- |
-
-## 返回数据 {#resultMapping .section}
+## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Data| | |租用的入网凭证信息列表。
+|Data|Struct| |调用成功时返回的当前阿里云账号租用的入网凭证信息列表。 |
+|BoundNodeGroupId|String|123|凭证绑定的节点组ID。 |
+|BoundNodeGroupName|String|123|凭证绑定的节点组名称。 |
+|ClassMode|String|A|入网凭证采用的LoRaWAN Class模式。 |
+|CreateMillis|Long|1514736000000|入网凭证的创建时间，格式为UNIX时间戳，以毫秒为单位。 |
+|DataRate|Long|2|数据速率。 |
+|Enabled|Boolean|true|入网凭证的启停用状态。返回值：
 
- |
-|ClassMode|String|A|入网凭证采用的LoRaWAN Class模式，可取值：**A**、**B**、**C**。
-
- |
-|CreateMillis|Long|1514736000000|入网凭证的创建时间，格式为 UNIX 时间戳，以毫秒为单位。
-
- |
-|Enabled|Boolean|false|入网凭证的启停用状态。**true**表示启用，**false**表示停用。
-
- |
-|FreqBandPlanGroupId|Long|102|入网凭证采用的频段的频段ID。
-
- |
-|JoinEui|String|0000000000000000|入网凭证使用的JoinEUI。
-
- |
-|JoinPermissionId|String|123|入网凭证ID。
-
- |
-|JoinPermissionName|String|凭证1|入网凭证的名称。
-
- |
-|NodesCnt|Long|10|使用该入网凭证的节点数量。
-
- |
-|RxDailySum|Long|0|入网凭证的当天上行数据包量。
-
- |
-|RxMonthSum|Long|0|入网凭证的当月上行数据包量。
-
- |
-|TxDailySum|Long|0|入网凭证的当天下行数据包量。
-
- |
-|TxMonthSum|Long|0|入网凭证的当月下行数据包量。
-
- |
-|Type|String|LOCAL|入网凭证的类型。取值：
+ -   **true**：启用。
+-   **false**：停用。 |
+|FreqBandPlanGroupId|Long|102|入网凭证采用的频段ID。 |
+|JoinEui|String|0000000000000000|入网凭证使用的JoinEUI。 |
+|JoinPermissionId|String|123|入网凭证ID。 |
+|JoinPermissionName|String|凭证1|入网凭证的名称。 |
+|NodesCnt|Long|10|使用该入网凭证的节点数量。 |
+|RxDailySum|Long|0|入网凭证的当天上行数据包量。 |
+|RxDelay|Long|1|Class A的接收窗口延迟时间。 |
+|RxMonthSum|Long|0|入网凭证的当月上行数据包量。 |
+|TxDailySum|Long|0|入网凭证的当天下行数据包量。 |
+|TxMonthSum|Long|0|入网凭证的当月下行数据包量。 |
+|Type|String|LOCAL|入网凭证的类型。返回值：
 
  -   **LOCAL**：专用凭证。
--   **ROAMING**：泛在凭证。
+-   **ROAMING**：泛在凭证。 |
+|RequestId|String|89EF6CAA-958F-F32C-BE45-FE003C6DE097|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|是否调用成功。返回值：
 
- |
-|RequestId|String|89EF6CAA-958F-F32C-BE45-FE003C6DE097|请求ID。
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
- |
-|Success|Boolean|true|是否成功。
-
- |
-
-## 示例 {#demo .section}
+## 示例
 
 请求示例
 
-``` {#request_demo}
-
+```
 http(s)://linkwan.cn-shanghai.aliyuncs.com/?Action=GetRentedJoinPermission
 &JoinPermissionId=123
 &<公共请求参数>
-
 ```
 
 正常返回示例
 
-`XML` 格式
+`XML`格式
 
-``` {#xml_return_success_demo}
-<GetRentedJoinPermissionResponse>
-      <Data>
-            <JoinEui>0000000000000000</JoinEui>
-            <ClassMode>A</ClassMode>
-            <RxDailySum>0</RxDailySum>
-            <Enabled>true</Enabled>
-            <CreateMillis>1514736000000</CreateMillis>
-            <RxMonthSum>0</RxMonthSum>
-            <TxDailySum>0</TxDailySum>
-            <NodesCnt>10</NodesCnt>
-            <TxMonthSum>0</TxMonthSum>
-            <JoinPermissionId>123</JoinPermissionId>
-            <type>LOCAL</type>
-            <JoinPermissionName>凭证1</JoinPermissionName>
-            <FreqBandPlanGroupId>102</FreqBandPlanGroupId>
-      </Data>
-      <RequestId>89EF6CAA-958F-F32C-BE45-FE003C6DE097</RequestId>
-      <Success>true</Success>
-</GetRentedJoinPermissionResponse>
+```
+<RequestId>89EF6CAA-958F-F32C-BE45-FE003C6DE097</RequestId>
+<Data>
+    <NodesCnt>10</NodesCnt>
+    <BoundNodeGroupId>123</BoundNodeGroupId>
+    <RxMonthSum>0</RxMonthSum>
+    <ClassMode>A</ClassMode>
+    <RxDailySum>0</RxDailySum>
+    <TxDailySum>0</TxDailySum>
+    <Enabled>true</Enabled>
+    <TxMonthSum>0</TxMonthSum>
+    <RxDelay>1</RxDelay>
+    <BoundNodeGroupName>123</BoundNodeGroupName>
+    <Type>LOCAL</Type>
+    <DataRate>2</DataRate>
+    <CreateMillis>1514736000000</CreateMillis>
+    <JoinPermissionId>123</JoinPermissionId>
+    <JoinPermissionName>凭证1</JoinPermissionName>
+    <FreqBandPlanGroupId>102</FreqBandPlanGroupId>
+    <JoinEui>0000000000000000</JoinEui>
+</Data>
+<Success>true</Success>
 ```
 
-`JSON` 格式
+`JSON`格式
 
-``` {#json_return_success_demo}
+```
 {
-	"Data":{
-		"Enabled":true,
-		"NodesCnt":10,
-		"RxDailySum":0,
-		"JoinEui":"0000000000000000",
-		"ClassMode":"A",
-		"type":"LOCAL",
-		"JoinPermissionName":"凭证1",
-		"JoinPermissionId":"123",
-		"FreqBandPlanGroupId":102,
-		"TxDailySum":0,
-		"TxMonthSum":0,
-		"CreateMillis":1514736000000,
-		"RxMonthSum":0
-	},
-	"RequestId":"89EF6CAA-958F-F32C-BE45-FE003C6DE097",
-	"Success":true
+    "RequestId": "89EF6CAA-958F-F32C-BE45-FE003C6DE097",
+    "Data": {
+        "NodesCnt": 10,
+        "BoundNodeGroupId": 123,
+        "RxMonthSum": 0,
+        "ClassMode": "A",
+        "RxDailySum": 0,
+        "TxDailySum": 0,
+        "Enabled": true,
+        "TxMonthSum": 0,
+        "RxDelay": 1,
+        "BoundNodeGroupName": 123,
+        "Type": "LOCAL",
+        "DataRate": 2,
+        "CreateMillis": 1514736000000,
+        "JoinPermissionId": 123,
+        "JoinPermissionName": "凭证1",
+        "FreqBandPlanGroupId": 102,
+        "JoinEui": 0
+    },
+    "Success": true
 }
 ```
 
-## 错误码 { .section}
+## 错误码
 
 |HttpCode|错误码|错误信息|描述|
 |--------|---|----|--|
