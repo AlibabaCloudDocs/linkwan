@@ -1,75 +1,79 @@
-# CreateLocalJoinPermission {#doc_api_LinkWAN_CreateLocalJoinPermission .reference}
+# CreateLocalJoinPermission
 
-调用CreateLocalJoinPermission创建专用入网凭证。当前用户账号将成为该凭证的拥有者，拥有该凭证。
+调用CreateLocalJoinPermission创建专用入网凭证。当前阿里云账号将成为该凭证的拥有者。
 
-## 调试 {#api_explorer .section}
+## 限制说明
 
-[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=LinkWAN&api=CreateLocalJoinPermission&type=RPC&version=2018-12-30)
+-   如果在企业版实例中调用该接口，请求参数**IotInstanceId**必须填写。否则，调用接口会失败。
+-   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为5。
 
-## 请求参数 {#parameters .section}
+**说明：** RAM用户共享阿里云账号配额。
+
+## 调试
+
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=LinkWAN&api=CreateLocalJoinPermission&type=RPC&version=2019-03-01)
+
+## 请求参数
 
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
-|Action|String|是|CreateLocalJoinPermission|系统规定参数。取值：**CreateLocalJoinPermission**。
+|Action|String|是|CreateLocalJoinPermission|系统规定参数。取值：**CreateLocalJoinPermission**。 |
+|ClassMode|String|是|A|专用入网凭证采用的LoRaWAN Class模式。取值：A、B、C。 |
+|FreqBandPlanGroupId|Long|是|101|专用入网凭证采用的频段ID，可调用[ListFreqBandPlanGroups](~~108614~~)接口查询获取。 |
+|JoinPermissionName|String|是|test|自定义专用入网凭证名称。支持中文、英文字母、数字和下划线（\_），长度限制为4~30个字符，一个中文占2个字符。 |
+|UseDefaultJoinEui|Boolean|是|true|专用入网凭证是否使用阿里云统一JoinEUI。取值：
 
- |
-|ClassMode|String|是|A|专用入网凭证采用的LoRaWAN Class模式。可取值：**A**、**B**、**C**。
+ -   **true**：使用阿里云统一JoinEUI。
+-   **false**：使用用户自定义JoinEUI。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。
 
- |
-|FreqBandPlanGroupId|Long|是|101|专用入网凭证所采用的频段的频段ID。
+ -   企业版实例：必须传入此参数。您可在物联网平台控制台的**实例概览**页面，查看您的企业版实例ID。
+-   公共实例：无需传入此参数。 |
+|RxDelay|Long|否|1|Class A的接收窗口延时时间，取值范围：1s~15s。 |
+|DataRate|Long|否|4|数据速率，取值范围0~5。 |
+|JoinEui|String|否|Ede4tde8erth\*\*\*\*|用户自定义凭证使用的JoinEUI，当**UseDefaultJoinEui**设置为**true**时，此参数无需填入。 |
 
- |
-|JoinPermissionName|String|是|test|自定义专用入网凭证名称。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数](~~108601~~)。
 
- |
-|UseDefaultJoinEui|Boolean|是|true|专用入网凭证是否使用阿里云统一JoinEUI。
-
- |
-
-## 返回数据 {#resultMapping .section}
+## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Data|String|123|所创建的专用入网凭证的ID。
+|Data|String|123|创建的专用入网凭证的ID。 |
+|RequestId|String|89EF6CAA-958F-F32C-BE45-FE003C6DE097|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|是否调用成功。返回值：
 
- |
-|RequestId|String|89EF6CAA-958F-F32C-BE45-FE003C6DE097|请求ID。
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
- |
-|Success|Boolean|true|是否成功。
-
- |
-
-## 示例 {#demo .section}
+## 示例
 
 请求示例
 
-``` {#request_demo}
-
+```
 http(s)://linkwan.cn-shanghai.aliyuncs.com/?Action=CreateLocalJoinPermission
 &ClassMode=A
 &FreqBandPlanGroupId=101
 &JoinPermissionName=test
 &UseDefaultJoinEui=true
 &<公共请求参数>
-
 ```
 
 正常返回示例
 
-`XML` 格式
+`XML`格式
 
-``` {#xml_return_success_demo}
+```
 <CreateLocalJoinPermissionResponse>
-      <Data>123</Data>
-      <RequestId>89EF6CAA-958F-F32C-BE45-FE003C6DE097</RequestId>
-      <Success>true</Success>
+        <Data>123</Data>
+        <RequestId>89EF6CAA-958F-F32C-BE45-FE003C6DE097</RequestId>
+        <Success>true</Success>
 </CreateLocalJoinPermissionResponse>
 ```
 
-`JSON` 格式
+`JSON`格式
 
-``` {#json_return_success_demo}
+```
 {
 	"Data":"123",
 	"RequestId":"89EF6CAA-958F-F32C-BE45-FE003C6DE097",
@@ -77,7 +81,7 @@ http(s)://linkwan.cn-shanghai.aliyuncs.com/?Action=CreateLocalJoinPermission
 }
 ```
 
-## 错误码 { .section}
+## 错误码
 
 |HttpCode|错误码|错误信息|描述|
 |--------|---|----|--|
