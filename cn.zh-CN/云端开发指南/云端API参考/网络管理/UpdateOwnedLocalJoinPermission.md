@@ -1,75 +1,78 @@
-# UpdateOwnedLocalJoinPermission {#doc_api_LinkWAN_UpdateOwnedLocalJoinPermission .reference}
+# UpdateOwnedLocalJoinPermission
 
-调用UpdateOwnedLocalJoinPermission更新当前用户账号所拥有的专用入网凭证。
+调用UpdateOwnedLocalJoinPermission更新当前阿里云账号拥有的专用入网凭证。
 
-## 调试 {#api_explorer .section}
+## 限制说明
 
-[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=LinkWAN&api=UpdateOwnedLocalJoinPermission&type=RPC&version=2018-12-30)
+-   如果在企业版实例中调用该接口，请求参数**IotInstanceId**必须填写。否则，调用接口会失败。
+-   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为5。
 
-## 请求参数 {#parameters .section}
+**说明：** RAM用户共享阿里云账号配额。
+
+## 调试
+
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=LinkWAN&api=UpdateOwnedLocalJoinPermission&type=RPC&version=2019-03-01)
+
+## 请求参数
 
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
-|Action|String|是|UpdateOwnedLocalJoinPermission|系统规定参数。取值：**UpdateOwnedLocalJoinPermission**。
+|Action|String|是|UpdateOwnedLocalJoinPermission|系统规定参数。取值：**UpdateOwnedLocalJoinPermission**。 |
+|JoinPermissionId|String|是|123|专用入网凭证ID，可调用[ListRentedJoinPermissions](~~109924~~)接口查询获取。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。
 
- |
-|JoinPermissionId|String|是|123|专用入网凭证ID，用来指定要更新的入网凭证。
+ -   企业版实例：必须传入此参数。您可在物联网平台控制台的**实例概览**页面，查看您的企业版实例ID。
+-   公共实例：无需传入此参数。 |
+|FreqBandPlanGroupId|Long|否|201|专用入网凭证采用的频段ID，可调用[ListFreqBandPlanGroups](~~108614~~)接口查询获取。 |
+|ClassMode|String|否|A|专用入网凭证采用的LoRaWAN Class模式。取值：A、B、C。 |
+|JoinPermissionName|String|否|凭证1|自定义入网凭证名称。支持中文、英文字母、数字和下划线（\_），长度限制4～30个字符，一个中文占两个字符。 |
+|RxDelay|String|否|1|Class A的接收窗口延时时间，取值范围1s~15s。 |
+|DataRate|String|否|4|数据速率，取值范围0~5。 |
+|JoinEui|String|否|0000000000000001|凭证使用的JoinEUI，为16位HEX。 |
 
- |
-|ClassMode|String|否|A|专用入网凭证采用的LoRaWAN Class模式，用于更新旧的 Class 模式。可取值：**A**、**B**、**C**。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~108601~~)。
 
- |
-|FreqBandPlanGroupId|Long|否|201|专用入网凭证所采用的频段的频段ID，用于更新旧频段。
-
- |
-|JoinPermissionName|String|否|凭证1|自定义入网凭证名称，用于更新旧名称。
-
- |
-
-## 返回数据 {#resultMapping .section}
+## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|RequestId|String|89EF6CAA-958F-F32C-BE45-FE003C6DE097|请求ID。
+|RequestId|String|89EF6CAA-958F-F32C-BE45-FE003C6DE097|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|是否调用成功。返回值：
 
- |
-|Success|Boolean|true|是否成功。
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
- |
-
-## 示例 {#demo .section}
+## 示例
 
 请求示例
 
-``` {#request_demo}
-
+```
 http(s)://linkwan.cn-shanghai.aliyuncs.com/?Action=UpdateOwnedLocalJoinPermission
 &JoinPermissionId=123
 &<公共请求参数>
-
 ```
 
 正常返回示例
 
-`XML` 格式
+`XML`格式
 
-``` {#xml_return_success_demo}
+```
 <UpdateOwnedLocalJoinPermissionResponse>
-      <RequestId>89EF6CAA-958F-F32C-BE45-FE003C6DE097</RequestId>
-      <Success>true</Success>
+        <RequestId>89EF6CAA-958F-F32C-BE45-FE003C6DE097</RequestId>
+        <Success>true</Success>
 </UpdateOwnedLocalJoinPermissionResponse>
 ```
 
-`JSON` 格式
+`JSON`格式
 
-``` {#json_return_success_demo}
+```
 {
 	"RequestId":"89EF6CAA-958F-F32C-BE45-FE003C6DE097",
 	"Success":true
 }
 ```
 
-## 错误码 { .section}
+## 错误码
 
 |HttpCode|错误码|错误信息|描述|
 |--------|---|----|--|
