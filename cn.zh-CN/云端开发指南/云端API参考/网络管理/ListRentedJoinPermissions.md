@@ -1,188 +1,195 @@
-# ListRentedJoinPermissions {#doc_api_LinkWAN_ListRentedJoinPermissions .reference}
+# ListRentedJoinPermissions
 
-调用ListRentedJoinPermissions根据过滤条件，查询当前用户账号所租用的入网凭证列表（可能是专用入网凭证或泛在入网凭证）。
+调用ListRentedJoinPermissions查询当前阿里云账号租用的入网凭证列表（专用凭证或泛在凭证）。
 
-## 调试 {#api_explorer .section}
+## 限制说明
 
-[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=LinkWAN&api=ListRentedJoinPermissions&type=RPC&version=2018-12-30)
+-   如果在企业版实例中调用该接口，请求参数**IotInstanceId**必须填写。否则，调用接口会失败。
+-   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为5。
 
-## 请求参数 {#parameters .section}
+**说明：** RAM用户共享阿里云账号配额。
+
+## 调试
+
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=LinkWAN&api=ListRentedJoinPermissions&type=RPC&version=2019-03-01)
+
+## 请求参数
 
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
-|Action|String|是|ListRentedJoinPermissions|系统规定参数。取值：**ListRentedJoinPermissions**。
+|Action|String|是|ListRentedJoinPermissions|系统规定参数。取值：**ListRentedJoinPermissions**。 |
+|Limit|Long|是|2|本次查询的入网凭证数量。 |
+|Offset|Long|是|0|本次查询的起始位置，从0开始。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。
 
- |
-|Limit|Long|是|2|本次查询的入网凭证数量的上限，大于等于 1。
+ -   企业版实例：必须传入此参数。您可在物联网平台控制台的**实例概览**页面，查看您的企业版实例ID。
+-   公共实例：无需传入此参数。 |
+|FuzzyOwnerAliyunId|String|否|some-user|模糊匹配入网凭证拥有者的阿里云账号。 |
+|FuzzyJoinEui|String|否|d896e0|模糊匹配入网凭证使用的JoinEUI。 |
+|Enabled|Boolean|否|false|专用入网凭证的启停用状态。取值：
 
- |
-|Offset|Long|是|0|本次查询的起始位置，从 0 开始。
+ -   **true**：启用。
+-   **false**：停用。 |
+|BoundNodeGroup|Boolean|否|false|入网凭证是否已关联到节点分组。取值：
 
- |
-|Ascending|Boolean|否|false|配合**SortingField**参数一起使用，**true**表示升序，**false**表示降序。
+ -   **true**：已关联。
+-   **false**：未关联。 |
+|Type|String|否|LOCAL|入网凭证的类型。取值：
 
- |
-|BoundNodeGroup|Boolean|否|true|根据入网凭证是否关联到节点分组进行过滤。**true**表示已关联，**false**表示未关联。
+ -   **LOCAL**：专用凭证。
+-   **ROAMING**：泛在凭证。 |
+|FuzzyJoinPermissionName|String|否|凭证1|模糊匹配入网凭证的名称。 |
+|SortingField|String|否|CREATED\_MILLIS|指定排序字段，取值为**CREATED\_MILLIS**，表示根据创建时间排序。 |
+|Ascending|Boolean|否|false|配合**SortingField**参数一起使用，指定字段排序方式。取值：
 
- |
-|Enabled|Boolean|否|true|按照凭证的启停用状态进行过滤。**true**表示启用，**false**表示停用。
+ -   **true**：升序。
+-   **false**：降序。 |
 
- |
-|FuzzyJoinEui|String|否|d896e0|模糊匹配入网凭证使用的JoinEUI。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~108601~~)。
 
- |
-|FuzzyJoinPermissionName|String|否|凭证1|模糊匹配入网凭证的名称。
-
- |
-|FuzzyOwnerAliyunId|String|否|some-user|模糊匹配入网凭证拥有者的阿里云账号ID。
-
- |
-|SortingField|String|否|CREATED\_MILLIS|指定排序字段，可取值为**CREATED\_MILLIS**, 表示根据创建时间排序。
-
- |
-|Type|String|否|LOCAL|按照入网凭证的类型进行过滤，取值：
-
- -   **LOCAL**：专用凭证
--   **ROAMING**：泛在凭证
-
- |
-
-## 返回数据 {#resultMapping .section}
+## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Data| | |返回的结果。
+|Data|Struct| |调用成功时返回的当前阿里云账号租用的入网凭证列表。 |
+|List|Array of JoinPermission| |入网凭证列表。 |
+|BoundNodeGroup|Boolean|false|入网凭证是否已关联到节点分组。返回值：
 
- |
-|List| | |符合过滤条件的入网凭证列表。
+ -   **true**：已关联。
+-   **false**：未关联。 |
+|BoundNodeGroupId|String|123|入网凭证绑定的节点组ID。 |
+|BoundNodeGroupName|String|123|入网凭证绑定的节点组名称。 |
+|ClassMode|String|A|入网凭证采用的LoRaWAN Class模式。 |
+|DataDispatchConfig|Struct| |节点分组的数据流转配置。 |
+|Destination|String|IOT|数据流转目的地。返回值：
 
- |
-|BoundNodeGroup|Boolean|false|入网凭证是否已关联到节点分组。
+ -   **IOT**：数据流转到物联网平台的产品。
+-   **ONS**：数据流转到MQ的Topic。 |
+|IotProduct|Struct| |如果流转目的地是物联网平台的产品，该字段存储产品信息。 |
+|DebugSwitch|Boolean|false|数据流转目的地为**IOT**的调试开关。返回值：
 
- |
-|ClassMode|String|A|入网凭证采用的LoRaWAN Class模式，可取值：**A**、**B**、**C**。
+ -   **true**：打开调试开关。
+-   **false**：关闭调试开关。 |
+|ProductKey|String|a1fyXVF\*\*\*\*|产品的**ProductKey**。 |
+|ProductName|String|test|产品名称。 |
+|ProductType|String|IOT\_SUITE|产品类型。返回值：
 
- |
-|Enabled|Boolean|true|入网凭证的启停用状态。
+ -   **IOT\_SUITE**：数据流转到IoT套件基础版。
+-   **IOT\_SUITE\_SENIOR**：数据流转到IoT套件高级版。 |
+|OnsTopics|Struct| |如果流转目的地是MQ，该字段存储MQ Topic信息。 |
+|DownlinkRegionName|String|cn-beijing|MQ下行Region ID。 |
+|DownlinkTopic|String|topic1|MQ下行Topic。 |
+|UplinkRegionName|String|cn-shanghai|MQ上行Region ID。 |
+|UplinkTopic|String|topic2|MQ上行Topic。 |
+|DataRate|String|4|数据速率。 |
+|Enabled|Boolean|true|入网凭证的启停用状态。返回值：
 
- |
-|FreqBandPlanGroupId|String|102|入网凭证采用的频段的频段ID。
+ -   **true**：启用。
+-   **false**：停用。 |
+|FreqBandPlanGroupId|String|102|入网凭证采用的频段ID。 |
+|JoinEui|String|0000000000000000|入网凭证使用的JoinEUI。 |
+|JoinPermissionId|String|123|入网凭证的ID。 |
+|JoinPermissionName|String|凭证1|入网凭证的名称。 |
+|OwnerAliyunId|String|some-user1|-   如果该入网凭证是**专用凭证**，该字段表示凭证拥有者的阿里云账号。
+-   如果该入网凭证是**泛在凭证**，该字段值为**AliCloud IoT**。 |
+|RxDelay|String|1|Class A的接收窗口延迟时间。 |
+|Type|String|LOCAL|入网凭证的类型。返回值：
 
- |
-|JoinEui|String|0000000000000000|入网凭证使用的的JoinEUI。
+ -   **LOCAL**：专用凭证。
+-   **ROAMING**：泛在凭证。 |
+|TotalCount|Long|10|入网凭证总数。 |
+|RequestId|String|89EF6CAA-958F-F32C-BE45-FE003C6DE097|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|是否调用成功。返回值：
 
- |
-|JoinPermissionId|String|123|入网凭证ID。
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
- |
-|JoinPermissionName|String|凭证1|入网凭证的名称。
-
- |
-|OwnerAliyunId|String|some-user1|-   如果该入网凭证是**专用入网凭证**，该字段表示拥有者的阿里云账号ID。
--   如果该入网凭证是**泛在入网凭证**，该字段恒为**AliCloud IoT**。
-
- |
-|Type|String|LOCAL|入网凭证的类型。
-
- |
-|TotalCount|Long|10|符合过滤条件的入网凭证总数。
-
- |
-|RequestId|String|89EF6CAA-958F-F32C-BE45-FE003C6DE097|请求ID。
-
- |
-|Success|Boolean|true|是否成功。
-
- |
-
-## 示例 {#demo .section}
+## 示例
 
 请求示例
 
-``` {#request_demo}
-
+```
 http(s)://linkwan.cn-shanghai.aliyuncs.com/?Action=ListRentedJoinPermissions
 &Limit=2
 &Offset=0
 &<公共请求参数>
-
 ```
 
 正常返回示例
 
-`XML` 格式
+`XML`格式
 
-``` {#xml_return_success_demo}
-<ListRentedJoinPermissionsResponse>
-      <Data>
-            <TotalCount>10</TotalCount>
-            <List>
-                  <JoinPermission>
-                        <JoinEui>0000000000000000</JoinEui>
-                        <ClassMode>A</ClassMode>
-                        <Enabled>true</Enabled>
-                        <BoundNodeGroup>false</BoundNodeGroup>
-                        <JoinPermissionId>123</JoinPermissionId>
-                        <OwnerAliyunId>some-user1</OwnerAliyunId>
-                        <Type>LOCAL</Type>
-                        <JoinPermissionName>凭证1</JoinPermissionName>
-                        <FreqBandPlanGroupId>102</FreqBandPlanGroupId>
-                  </JoinPermission>
-                  <JoinPermission>
-                        <JoinEui>0000000000000001</JoinEui>
-                        <ClassMode>A</ClassMode>
-                        <Enabled>true</Enabled>
-                        <BoundNodeGroup>false</BoundNodeGroup>
-                        <JoinPermissionId>126</JoinPermissionId>
-                        <OwnerAliyunId>some-user2</OwnerAliyunId>
-                        <Type>ROAMING</Type>
-                        <JoinPermissionName>凭证2</JoinPermissionName>
-                        <FreqBandPlanGroupId>102</FreqBandPlanGroupId>
-                  </JoinPermission>
-            </List>
-      </Data>
-      <RequestId>89EF6CAA-958F-F32C-BE45-FE003C6DE097</RequestId>
-      <Success>true</Success>
-</ListRentedJoinPermissionsResponse>
+```
+<RequestId>89EF6CAA-958F-F32C-BE45-FE003C6DE097</RequestId>
+<Data>
+    <TotalCount>10</TotalCount>
+    <List>
+        <BoundNodeGroupId>123</BoundNodeGroupId>
+        <ClassMode>A</ClassMode>
+        <Type>LOCAL</Type>
+        <DataRate>4</DataRate>
+        <OwnerAliyunId>some-user1</OwnerAliyunId>
+        <BoundNodeGroup>false</BoundNodeGroup>
+        <Enabled>true</Enabled>
+        <JoinPermissionId>123</JoinPermissionId>
+        <JoinPermissionName>凭证1</JoinPermissionName>
+        <FreqBandPlanGroupId>102</FreqBandPlanGroupId>
+        <JoinEui>0</JoinEui>
+        <RxDelay>1</RxDelay>
+        <BoundNodeGroupName>123</BoundNodeGroupName>
+        <DataDispatchConfig>
+            <Destination>IOT</Destination>
+            <IotProduct>
+                <DebugSwitch>false</DebugSwitch>
+                <ProductName>test</ProductName>
+                <ProductType>IOT_SUITE</ProductType>
+                <ProductKey>a1fyXVF****</ProductKey>
+            </IotProduct>
+            <OnsTopics><OnsTopics/>
+        </DataDispatchConfig>
+    </List>
+</Data>
+<Success>true</Success>
 ```
 
-`JSON` 格式
+`JSON`格式
 
-``` {#json_return_success_demo}
+```
 {
-	"Data":{
-		"TotalCount":10,
-		"List":[
-			{
-				"Enabled":true,
-				"JoinPermissionId":"123",
-				"FreqBandPlanGroupId":102,
-				"BoundNodeGroup":false,
-				"OwnerAliyunId":"some-user1",
-				"Type":"LOCAL",
-				"ClassMode":"A",
-				"JoinEui":"0000000000000000",
-				"JoinPermissionName":"凭证1"
-			},
-			{
-				"Enabled":true,
-				"JoinPermissionId":"126",
-				"FreqBandPlanGroupId":102,
-				"BoundNodeGroup":false,
-				"OwnerAliyunId":"some-user2",
-				"Type":"ROAMING",
-				"ClassMode":"A",
-				"JoinEui":"0000000000000001",
-				"JoinPermissionName":"凭证2"
-			}
-		]
-	},
-	"RequestId":"89EF6CAA-958F-F32C-BE45-FE003C6DE097",
-	"Success":true
+    "RequestId": "89EF6CAA-958F-F32C-BE45-FE003C6DE097",
+    "Data": {
+        "TotalCount": 10,
+        "List": {
+            "BoundNodeGroupId": 123,
+            "ClassMode": "A",
+            "Type": "LOCAL",
+            "DataRate": 4,
+            "OwnerAliyunId": "some-user1",
+            "BoundNodeGroup": false,
+            "Enabled": true,
+            "JoinPermissionId": 123,
+            "JoinPermissionName": "凭证1",
+            "FreqBandPlanGroupId": 102,
+            "JoinEui": 0,
+            "RxDelay": 1,
+            "BoundNodeGroupName": 123,
+            "DataDispatchConfig": {
+                "Destination": "IOT",
+                "IotProduct": {
+                    "DebugSwitch": false,
+                    "ProductName": "test",
+                    "ProductType": "IOT_SUITE",
+                    "ProductKey": "a1fyXVF****"
+                },
+                "OnsTopics": {}
+            }
+        }
+    },
+    "Success": true
 }
 ```
 
-## 错误码 { .section}
+## 错误码
 
 |HttpCode|错误码|错误信息|描述|
 |--------|---|----|--|
